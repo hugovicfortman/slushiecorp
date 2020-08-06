@@ -1,0 +1,6 @@
+# Files to ignore
+
+.vs/
+[b|B]in/
+[o|O]bj/
+[d|D]ebug/

@@ -1,0 +1,11 @@
+Slushie inc is a slushie supply company that tracks consumption rate of its 
+products by users, and supplies new orders when users run out of slushies.
+
+Two windows.
+Win 1: Slushie Vendor
+- Supplies slushies to each house by clicking the "Supply" button
+- Receives new slushie orders as tickets to supply or reject.
+- New orders are automatically generated when an existing consumer has exhausted
+  thier slushie or a new customer is added at the customer window
+- Keeps Track of customer count, slushies per customer and total slushies 
+  delivered
