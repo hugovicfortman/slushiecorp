@@ -32,14 +32,14 @@ namespace slushiecorp
             services.AddControllers()
                 .AddNewtonsoftJson(o => o.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
 
-            services.AddCors(options =>
-            {
-                options.AddPolicy("CorsPolicy", builder => builder
-                .WithOrigins("http://localhost:4200")
-                .AllowAnyMethod()
-                .AllowAnyHeader()
-                .AllowCredentials());
-            });
+            //services.AddCors(options =>
+            //{
+            //    options.AddPolicy("CorsPolicy", builder => builder
+            //    .WithOrigins("http://localhost:4200")
+            //    .AllowAnyMethod()
+            //    .AllowAnyHeader()
+            //    .AllowCredentials());
+            //});
 
             services.AddSignalR().AddNewtonsoftJsonProtocol(opt => {
                 opt.PayloadSerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
@@ -64,16 +64,21 @@ namespace slushiecorp
 
             app.UseHttpsRedirection();
 
-            app.UseCors("CorsPolicy");
+            // app.UseCors("CorsPolicy");
 
             app.UseRouting();
 
             app.UseAuthorization();
 
+            app.UseStaticFiles();
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
                 endpoints.MapHub<SlushieHub>("/slushiehub");
+
+                // Render the SPA
+                endpoints.MapFallbackToController("GET","home");
             });
         }
     }
